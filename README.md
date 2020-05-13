@@ -108,7 +108,7 @@ please note:
   and provided for you by Google. It will deliver excellent availability and
   security.
 
-- It's very easy for operators to update the spreadsheet using a Web UI - an
+- It's very easy for operators to read or update the rules using a Web UI - an
   easy-to-use tool they already know.
 
 - Google keeps back versions of the rules automatically. Rollback is brain dead
@@ -136,8 +136,14 @@ authorization policy decisions provided by an externalized service.
 
 ## Provisioning
 
-We need to set up a Google Sheet, as well as a service account that
-can access that sheet.  Follow these steps.
+There are two classes of setup required:
+
+* the Google cloud things including a Google Sheet, as well as a
+  service account that can access that sheet.
+
+* The Apigee-specific things, including proxies and sharedflows, etc.
+
+The following subsections take you through that setup.
 
 ### Google Cloud Project Stuff
 
@@ -179,14 +185,29 @@ can access that sheet.  Follow these steps.
    The `EMAIL` must be replaced by the email retrieved from the prior
    step.
 
-8. create the sheet:
+   The service account credentials get stored in `sa_creds.json`.
+   Protect this file; it contains secrets.  By the way, the specific
+   filename `sa_creds.json` is not important; you can use any name you
+   please. But you will need the name of that file in
+   subsequent steps.
+
+### The Sheet
+
+1. Create the sheet, supplying the `sa_creds.json` file you obtained
+   from above:
    ```
    cd tools
    npm install
    node ./createSheet.js ../sa_creds.json
    ```
-9. in the browser tab, share the sheet with the email of the service
-   account, as a `Viewer`.
+
+   This will create a sheet, emit the ID of the sheet in the terminal
+   session, and then open a browser tab to the sheet. You will need
+   the sheetid in a minute.
+
+2. In the browser tab containing the newly created sheet, use the
+   "Share" button in the upper right corner to share the
+   sheet with the email of the service account, as a `Viewer`.
 
 
 ### Apigee assets
