@@ -1,0 +1,3 @@
+<FlowCallout name='FC-Get-ABAC-Rules'>
+  <SharedFlowBundle>get-abac-rules</SharedFlowBundle>
+</FlowCallout>

@@ -1,0 +1,8 @@
+<Javascript name='JS-Eval-ABAC'>
+  <Properties>
+    <Property name='subject'>{request.queryparam.role}</Property>
+    <Property name='resource'>{request.queryparam.resource}</Property>
+    <Property name='action'>{request.queryparam.action}</Property>
+  </Properties>
+  <ResourceURL>jsc://evalABAC.js</ResourceURL>
+</Javascript>

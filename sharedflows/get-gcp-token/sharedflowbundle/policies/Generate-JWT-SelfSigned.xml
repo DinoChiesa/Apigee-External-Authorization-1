@@ -1,0 +1,13 @@
+<GenerateJWT name="Generate-JWT-SelfSigned">
+    <Algorithm>RS256</Algorithm>
+    <PrivateKey>
+        <Value ref="private.private_key"/>
+    </PrivateKey>
+    <Issuer ref="private.client_email"/>
+    <Audience ref="private.token_uri"/>
+    <ExpiresIn>240s</ExpiresIn>
+    <AdditionalClaims>
+        <Claim name="scope" type="string">https://www.googleapis.com/auth/spreadsheets.readonly</Claim>
+    </AdditionalClaims>
+    <OutputVariable>self_signed_jwt</OutputVariable>
+</GenerateJWT>

@@ -1,0 +1,90 @@
+<ProxyEndpoint name="endpoint1">
+  <Description>Proxy Endpoint 1</Description>
+  <HTTPProxyConnection>
+    <BasePath>/abac-demo</BasePath>
+    <Properties/>
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <FaultRules/>
+
+  <PreFlow name="PreFlow">
+    <Request>
+        <Step>
+          <Name>RF-InvalidRequest</Name>
+          <Condition>request.queryparam.role = null</Condition>
+        </Step>
+<!--
+        <Step>
+          <Name>RF-InvalidRequest</Name>
+          <Condition>NOT (request.verb = "GET")</Condition>
+        </Step>
+-->
+        <Step>
+          <Name>FC-Get-ABAC-Rules</Name>
+        </Step>
+        <Step>
+          <Name>JS-Eval-ABAC</Name>
+        </Step>
+        <Step>
+          <Name>RF-NotAuthorized</Name>
+          <Condition>abac_allowed != "true"</Condition>
+        </Step>
+    </Request>
+
+    <Response>
+      <Step>
+        <Name>AM-CleanResponseHeaders</Name>
+      </Step>
+      <Step>
+        <Name>AM-Response-OK</Name>
+      </Step>
+    </Response>
+  </PreFlow>
+
+  <PostFlow name="PostFlow">
+    <Request>
+    </Request>
+    <Response>
+    </Response>
+  </PostFlow>
+  <PostClientFlow name="PostFlow">
+    <Request>
+    </Request>
+    <Response>
+    </Response>
+  </PostClientFlow>
+
+  <Flows>
+
+    <Flow name="flow1">
+      <Condition>request.verb = "GET"</Condition>
+    </Flow>
+
+    <Flow name="flow2">
+      <Condition>request.verb = "PUT"</Condition>
+    </Flow>
+
+    <Flow name="flow3">
+      <Condition>request.verb = "POST"</Condition>
+    </Flow>
+
+    <Flow name="flow4">
+      <Condition>request.verb = "DELETE"</Condition>
+    </Flow>
+
+    <Flow name="unknown request">
+      <Request>
+        <Step>
+          <Name>RF-UnknownRequest</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+    </Flow>
+
+  </Flows>
+
+  <RouteRule name="NoRouteRule"/>
+
+</ProxyEndpoint>

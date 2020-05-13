@@ -1,0 +1,23 @@
+{
+  "rules" : [
+    [ "employee", "/abac-demo/foo", "GET", true ],
+    [ "employee", "/abac-demo/foo", "PUT", true ],
+    [ "employee", "/abac-demo/foo", "POST", true ],
+    [ "employee", "/abac-demo/foo", "DELETE", false ],
+    [], 
+    [ "contractor", "/abac-demo/foo", "GET", true ],
+    [ "contractor", "/abac-demo/foo", "PUT", false ],
+    [ "contractor", "/abac-demo/foo", "POST", false ],
+    [ "contractor", "/abac-demo/foo", "DELETE", false ],
+    [], 
+    [ "admin", "/abac-demo/foo", "GET", true ],
+    [ "admin", "/abac-demo/foo", "PUT", true ],
+    [ "admin", "/abac-demo/foo", "POST", true ],
+    [ "admin", "/abac-demo/foo", "DELETE", true ],
+    [], 
+    [ "partner", "/abac-demo/foo", "GET", false ],
+    [ "partner", "/abac-demo/foo", "PUT", false ],
+    [ "partner", "/abac-demo/foo", "POST", true ],
+    [ "partner", "/abac-demo/foo", "DELETE", false ]
+  ]
+}

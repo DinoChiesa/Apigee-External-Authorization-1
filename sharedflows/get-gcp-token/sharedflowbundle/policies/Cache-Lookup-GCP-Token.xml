@@ -1,0 +1,9 @@
+<LookupCache name='Cache-Lookup-GCP-Token'>
+  <!-- <CacheResource>cache1</CacheResource> -->
+  <Scope>Application</Scope>
+  <CacheKey>
+    <Prefix>google-tokens</Prefix>
+    <KeyFragment>gcp-sheets-token</KeyFragment>
+  </CacheKey>
+  <AssignTo>gcp_bearer_token</AssignTo>
+</LookupCache>
