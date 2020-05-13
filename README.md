@@ -218,11 +218,18 @@ and also provision the KVM. To do all of this, you need to supply
 steps. Pass these to the `./provision.js` script with options, like so:
 
 ```
+ORG=myorg
+ENV=myenv
 node ./provision -v -u email@example.com -o $ORG -e $ENV \
   --sheetid SHEETID \
   --sacreds ../sa_creds.json
 ```
 
+You must pass your Apigee user name to the provisioning script. It
+will prompt you for a password. (If you use `.netrc` you can omit the
+`-u` option and specify `-n`. )
+
+This script will take just a few moments to set all the Apigee things up.
 
 ## Invoking
 
