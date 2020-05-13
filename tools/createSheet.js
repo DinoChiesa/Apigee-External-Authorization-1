@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------
 //
 // created: Tue May 12 15:30:15 2020
-// last saved: <2020-May-12 22:16:42>
+// last saved: <2020-May-13 14:16:55>
 
 /* jshint esversion:9, node:true, strict:implied */
 /* global process, console, Buffer */
@@ -33,7 +33,7 @@ const version          = '20200512-2204',
 function getNewGoogleapisToken(oAuth2Client, tokenStashPath, cb) {
   console.log('\nYou must authorize the ABAC Rules Sheet Setup to create a new sheet.\n');
   console.log('This script will now open a browser tab. After granting consent, you will');
-  console.log('receive a one-time code. Return here and paste it in, to continue....\n');
+  console.log('receive a one-time code. Return here and paste it in to continue....\n');
 
   new Promise((resolve) => setTimeout(resolve, 4200))
     .then(() => {
@@ -71,7 +71,7 @@ function getNewGoogleapisToken(oAuth2Client, tokenStashPath, cb) {
 function oauth2Authorize(credentials, cb) {
   const {client_secret, client_id, redirect_uris} = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
-  const tokenStashPath = path.resolve(dataDir, ".gsheets_token_stash.json");
+  const tokenStashPath = path.resolve(dataDir, ".gsheets_abac_token_stash.json");
 
   // Check if there is a previously stashed token.
   fs.readFile(tokenStashPath, (e, token) => {
@@ -108,7 +108,7 @@ fsPromise.readFile(opt.options.sacreds, 'utf8')
       return Promise.reject(new Error('Cannot read the Service Account creds file.'));
     }
 
-    common.logWrite('\nCreating a new spreadsheet on Google sheets...');
+    common.logWrite('Creating a new spreadsheet on Google sheets...');
     oauth2Authorize(clientCreds, (auth) => {
       const sheets = google.sheets({version: 'v4', auth});
       const sheetTitle = "Rules";
@@ -183,10 +183,11 @@ fsPromise.readFile(opt.options.sacreds, 'utf8')
             let sheetUrl = sprintf('https://docs.google.com/spreadsheets/d/%s/edit',
                                    createResponse.data.spreadsheetId);
             console.log();
-            common.logWrite(`sheet id: ${createResponse.data.spreadsheetId}`);
-            common.logWrite(`sheet url: ${sheetUrl}`);
+            common.logWrite(`SHEETID=${createResponse.data.spreadsheetId}\n`);
             common.logWrite(`Share that sheet with this email: ${saCreds.client_email}`);
+            common.logWrite(`sheet url: ${sheetUrl}`);
             opn(sheetUrl, {wait: false});
+            common.logWrite('done');
           });
         });
       });

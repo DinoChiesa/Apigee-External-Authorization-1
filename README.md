@@ -198,7 +198,7 @@ The following subsections take you through that setup.
    ```
    cd tools
    npm install
-   node ./createSheet.js ../sa_creds.json
+   node ./createSheet.js --sacreds ../sa_creds.json
    ```
 
    This will create a sheet, emit the ID of the sheet in the terminal
@@ -221,13 +221,23 @@ steps. Pass these to the `./provision.js` script with options, like so:
 ORG=myorg
 ENV=myenv
 node ./provision.js -v -u email@example.com -o $ORG -e $ENV \
-  --sheetid SHEETID \
+  --sheetid $SHEETID \
   --sacreds ../sa_creds.json
 ```
 
 You must pass your Apigee user name to the provisioning script. It
-will prompt you for a password. (If you use `.netrc` you can omit the
-`-u` option and specify `-n`. )
+will prompt you for a password.
+
+If you use `.netrc` you can omit the
+`-u` option and specify `-n`.
+
+```
+ORG=myorg
+ENV=myenv
+node ./provision.js -v -n -o $ORG -e $ENV \
+  --sheetid $SHEETID \
+  --sacreds ../sa_creds.json
+```
 
 This script will take just a few moments to set all the Apigee things up.
 
