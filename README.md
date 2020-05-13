@@ -235,38 +235,42 @@ This script will take just a few moments to set all the Apigee things up.
 
 Remember, there are two proxies. Both demonstrate the same thing.
 
-To invoke the `cloud-sheets-abac` proxy, in which you must explicitly
-pass the tuple in distinct query params:
-```
- curl -i "https://$ORG-$ENV.apigee.net/cloud-sheets-abac/permission?role=employee&action=GET&resource=/abac-demo/foo"
-```
+1. To invoke the `cloud-sheets-abac` proxy, in which you must explicitly
+   pass the tuple in distinct query params:
+   ```
+   curl -i "https://$ORG-$ENV.apigee.net/cloud-sheets-abac/permission?role=employee&action=GET&resource=/abac-demo/foo"
+   ```
 
-The possible values:
+   The possible values:
 
-| parameter | values                                                          |
-|-----------|-----------------------------------------------------------------|
-| role      | admin, partner, employee, contractor                            |
-| verb      | PUT, POST, GET, DELETE                                          |
-| resource  | any path, but only /abac-demo/foo has ALLOW entries in the sheet, to start. |
+   | parameter | values                                                          |
+   |-----------|-----------------------------------------------------------------|
+   | role      | admin, partner, employee, contractor                            |
+   | verb      | PUT, POST, GET, DELETE                                          |
+   | resource  | any path, but only /abac-demo/foo has ALLOW entries in the sheet, to start. |
 
 
-To invoke the `abac-demo` api proxy in this demonstration:
-```
-  curl -i -X VERB "https://$ORG-$ENV.apigee.net/abac-demo/foo?role=XXXX"
-```
+2. To invoke the `abac-demo` api proxy in this demonstration:
+   ```
+   curl -i -X VERB "https://$ORG-$ENV.apigee.net/abac-demo/foo?role=XXXX"
+   ```
 
-For example:
-```
-  curl -i -X POST "https://$ORG-$ENV.apigee.net/abac-demo/foo?role=partner" -d ''
-```
+   For example:
+   ```
+   curl -i -X POST "https://$ORG-$ENV.apigee.net/abac-demo/foo?role=partner" -d ''
+   ```
+
+   This one will use the verb and path from the HTTP request, and the
+   role passed as a query parameter.
 
 
 ## Modifying the rules
 
 You can update the sheet, add rules, modify the existing ones, and so
-on.  Then invoke the proxies again.  The rules are cached for 300
-seconds in the API Proxy, so you may have to wait. To change that TTL,
-modify the KVM policies in the get-abac-rules sharedflow.
+on.  Then invoke the proxies again. The rules are cached for 300
+seconds in the API Proxy; after changing the rules, you may have to
+wait for cache expiry. To change that TTL, modify the KVM policies in
+the get-abac-rules sharedflow.
 
 ## Extending the Idea
 
