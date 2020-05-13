@@ -99,8 +99,8 @@ is not appropriate for use within an enterprise. Don't be too quick. Before
 dismissing the use of a spreadsheet to hold enterprise critical information,
 please note:
 
-- The table metaphore in a spreadsheet is a very clean way to represent ALLOW &
-  DENY tuples.  Each of {subject, object, action, decision} is a column. A row
+- The table metaphor in a spreadsheet is a very clean way to represent ALLOW &
+  DENY tuples. Each of {subject, object, action, decision} is a column. A row
   in the sheet represents a single rule. Even with thousands or tens of
   thousands of rows, the sheet will meet the need nicely.
 
@@ -220,7 +220,7 @@ steps. Pass these to the `./provision.js` script with options, like so:
 ```
 ORG=myorg
 ENV=myenv
-node ./provision -v -u email@example.com -o $ORG -e $ENV \
+node ./provision.js -v -u email@example.com -o $ORG -e $ENV \
   --sheetid SHEETID \
   --sacreds ../sa_creds.json
 ```
@@ -293,7 +293,7 @@ All of this is possible.
 You can de-provision the Apigee assets with the `./provision.js`
 script:
 ```
-node ./provision -v -u email@example.com -o $ORG -e $ENV -R
+node ./provision.js -v -u email@example.com -o $ORG -e $ENV -R
 ```
 
 This should remove the sharedflows, the proxies, and the KVM entries.
@@ -303,4 +303,4 @@ account, and the sheet.
 
 ## TODO
 
-* update the provisioning for Apigee hybrid
+* update the provisioning so that it works with Apigee hybrid
