@@ -175,7 +175,7 @@ can access that sheet.  Follow these steps.
    node ./createSheet.js ../sa_creds.json
    ```
 9. in the browser tab, share the sheet with the email of the service
-   account. MAke that email a `Viewer`.
+   account, as a `Viewer`.
 
 
 ### Apigee assets
