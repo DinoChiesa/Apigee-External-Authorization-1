@@ -44,6 +44,9 @@ The implementation here is an Apigee proxy that:
 We might call the external list of rules the "Policy Decision Point" and the
 gateway, the "Policy Execution Point".
 
+You can see a screencast walkthrough of this demonstration, here:
+
+[![Watch the video](https://img.youtube.com/vi/ZnCOWuYiF5g/maxresdefault.jpg)](https://youtu.be/ZnCOWuYiF5g)
 
 ## This Implementation
 
