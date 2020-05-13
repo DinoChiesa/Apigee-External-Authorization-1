@@ -7,7 +7,7 @@ People use the Apigee gateway for many purposes. A typical technical use case is
 to  enforce authorization policies for inbound calls, before proxying to an
 upstream system. A good pattern is:
 
-1. _externalize_ the authorization decisions, perhaps in an external
+1. Externalize the authorization decisions, perhaps in an external
    authorization database table, service, or rules engine.
 
    - Each rule can be modeled as a tuple of {subject, object, action}, related
@@ -120,7 +120,18 @@ please note:
   with role-based edit rights and so on. Also, Google automatically keeps an
   audit trail of who changed what.
 
-In short, a Google sheet is a really nice fit for storing slowly-changing authorization rules.
+In short, a Google sheet is a good fit for storing
+authorization rules.
+
+
+
+## Focus on the Pattern
+
+While I think using a Sheet to store the rules can be an effective
+approach, you don't have to agree. In any case that is not the main
+point of this demonstration. Please focus on the general pattern, not
+on the implementation. The pattern is: Apigee implementing
+authorization policy decisions provided by an externalized service.
 
 
 ## Provisioning
@@ -228,6 +239,21 @@ You can update the sheet, add rules, modify the existing ones, and so
 on.  Then invoke the proxies again.  The rules are cached for 300
 seconds in the API Proxy, so you may have to wait. To change that TTL,
 modify the KVM policies in the get-abac-rules sharedflow.
+
+## Extending the Idea
+
+Imagine an expansion of the idea beyond the Allow/Deny
+binary decision. What if the authorization response came back with an
+"allowed quota" or score based on some other environmental factor?
+Maybe there is a separate, asynchronous task that runs and
+periodically updates the rules in the sheet?  What it does, and how it
+does it, would be entirely flexible.
+
+Beyond an Allow/Deny action, Apigee might implement a rate limit as
+suggested by the external system. The rate limit might change over
+time, or be different at different times of the day.
+
+All of this is possible.
 
 
 ## Deprovisioning
