@@ -172,7 +172,7 @@ can access that sheet.  Follow these steps.
    ```
    cd tools
    npm install
-   node ./createSheet.js sa_creds.json
+   node ./createSheet.js ../sa_creds.json
    ```
 9. in the browser tab, share the sheet with the email of the service
    account. MAke that email a `Viewer`.
@@ -188,7 +188,7 @@ steps. Pass these to the `./provision.js` script with options, like so:
 ```
 node ./provision -v -u email@example.com -o $ORG -e $ENV \
   --sheetid SHEETID \
-  --sacreds sa_creds.json
+  --sacreds ../sa_creds.json
 ```
 
 
