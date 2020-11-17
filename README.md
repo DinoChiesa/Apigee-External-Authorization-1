@@ -85,7 +85,6 @@ steps:
 
   - set a context variable `abac_rules` to contain the rules
 
-
 There is one additional shared flow, `Get-GCP-Token` , which `Get-ABAC-Rules`
 uses to retrieve and cache a GCP access token, if there is no cached ruleset.
 
@@ -123,18 +122,16 @@ please note:
   with role-based edit rights and so on. Also, Google automatically keeps an
   audit trail of who changed what.
 
-In short, a Google sheet is a good fit for storing
-authorization rules.
-
+In short, a Google sheet is a good fit for storing authorization rules.
 
 
 ## Focus on the Pattern
 
-While I think using a Sheet to store the rules can be an effective
-approach, you don't have to agree. In any case that is not the main
-point of this demonstration. Please focus on the general pattern, not
-on the implementation. The pattern is: Apigee implementing
-authorization policy decisions provided by an externalized service.
+While _I think_ using a cloud-based sheet document to store the rules can be an
+effective approach, you don't have to agree. In any case that is not the main
+point of this demonstration. Please focus on the general pattern, not on the
+implementation. The pattern is: Apigee implementing authorization policy
+decisions provided by an externalized service.
 
 
 ## Provisioning
@@ -189,7 +186,7 @@ The following subsections take you through that setup.
    step.
 
    The service account credentials get stored in `sa_creds.json`.
-   Protect this file; it contains secrets.  By the way, the specific
+   Protect this file; it contains secrets.  The specific
    filename `sa_creds.json` is not important; you can use any name you
    please. But you will need the name of that file in
    subsequent steps.
@@ -303,8 +300,7 @@ All of this is possible.
 
 ## Deprovisioning
 
-You can de-provision the Apigee assets with the `./provision.js`
-script:
+You can de-provision the Apigee assets with the `./provision.js` script:
 ```
 node ./provision.js -v -u email@example.com -o $ORG -e $ENV -R
 ```
