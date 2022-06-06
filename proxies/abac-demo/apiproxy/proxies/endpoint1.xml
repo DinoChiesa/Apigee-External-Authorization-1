@@ -7,38 +7,39 @@
   </HTTPProxyConnection>
 
   <FaultRules/>
+  <DefaultFaultRule>
+    <AlwaysEnforce>true</AlwaysEnforce>
+    <Step>
+      <Name>AM-Inject-Proxy-Revision-Header</Name>
+    </Step>
+  </DefaultFaultRule>
 
   <PreFlow name="PreFlow">
     <Request>
-        <Step>
-          <Name>RF-InvalidRequest</Name>
-          <Condition>request.queryparam.role = null</Condition>
-        </Step>
-<!--
-        <Step>
-          <Name>RF-InvalidRequest</Name>
-          <Condition>NOT (request.verb = "GET")</Condition>
-        </Step>
--->
-        <Step>
-          <Name>FC-Get-ABAC-Rules</Name>
-        </Step>
-        <Step>
-          <Name>JS-Eval-ABAC</Name>
-        </Step>
-        <Step>
-          <Name>RF-NotAuthorized</Name>
-          <Condition>abac_allowed != "true"</Condition>
-        </Step>
+      <Step>
+        <Name>RF-InvalidRequest</Name>
+        <Condition>request.queryparam.role = null</Condition>
+      </Step>
+      <Step>
+        <Name>FC-Get-ABAC-Rules</Name>
+      </Step>
+      <Step>
+        <Name>JS-Eval-ABAC</Name>
+      </Step>
+      <Step>
+        <Name>RF-NotAuthorized</Name>
+        <Condition>abac_allowed != "true"</Condition>
+      </Step>
     </Request>
 
     <Response>
       <Step>
-        <Name>AM-CleanResponseHeaders</Name>
+        <Name>AM-Clean-Request-Headers-From-Response</Name>
       </Step>
       <Step>
         <Name>AM-Response-OK</Name>
       </Step>
+
     </Response>
   </PreFlow>
 
@@ -46,8 +47,12 @@
     <Request>
     </Request>
     <Response>
+      <Step>
+        <Name>AM-Inject-Proxy-Revision-Header</Name>
+      </Step>
     </Response>
   </PostFlow>
+
   <PostClientFlow name="PostFlow">
     <Request>
     </Request>

@@ -7,13 +7,19 @@
   </HTTPProxyConnection>
 
   <FaultRules/>
+  <DefaultFaultRule>
+    <AlwaysEnforce>true</AlwaysEnforce>
+    <Step>
+      <Name>AM-Inject-Proxy-Revision-Header</Name>
+    </Step>
+  </DefaultFaultRule>
 
   <PreFlow name="PreFlow">
     <Request>
     </Request>
     <Response>
       <Step>
-        <Name>AM-CleanResponseHeaders</Name>
+        <Name>AM-Clean-Request-Headers-From-Response</Name>
       </Step>
     </Response>
   </PreFlow>
@@ -22,6 +28,10 @@
     <Request>
     </Request>
     <Response>
+
+      <Step>
+        <Name>AM-Inject-Proxy-Revision-Header</Name>
+      </Step>
     </Response>
   </PostFlow>
   <PostClientFlow name="PostFlow">
@@ -51,11 +61,9 @@
       </Request>
       <Response>
         <Step>
-          <!-- retrieve rules -->
           <Name>FC-Get-ABAC-Rules</Name>
         </Step>
         <Step>
-          <!-- evaluate abac -->
           <Name>JS-Eval-ABAC</Name>
         </Step>
 

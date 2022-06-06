@@ -1,10 +1,10 @@
 # Externalizing API Authorization with Apigee
 
 The Apigee API Platform includes a configurable smart proxy service. People
-often think of this as a gateway.
+often think of this part of the platform as a gateway.
 
 People use the Apigee gateway for many purposes. A typical technical use case is
-to  enforce authorization policies for inbound calls, before proxying to an
+to enforce authorization policies for inbound calls, before proxying to an
 upstream system. A good pattern is:
 
 1. Externalize the authorization decisions, perhaps in an external
@@ -47,6 +47,9 @@ gateway, the "Policy Execution Point".
 To see a screencast walkthrough of this demonstration, [click here](https://youtu.be/ZnCOWuYiF5g):
 
 [![Watch the video](https://img.youtube.com/vi/ZnCOWuYiF5g/maxresdefault.jpg)](https://youtu.be/ZnCOWuYiF5g)
+
+This works in Apigee Edge as well as X or hybrid. However, currently the tools included in this
+repo work only with Edge.
 
 ## This Implementation
 
