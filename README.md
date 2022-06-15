@@ -99,8 +99,12 @@ permissions definition, and Apigee calls into that sheet to read
 it. Of course, the store could be replaced with any alternative
 implementation that can be reached via HTTPS.
 
-You might think that a spreadsheet is a cute way to demonstrate this idea, but
-is not appropriate for use within an enterprise. Don't be too quick. Before
+The data looks like this:
+![rule set](./images/screenshot-20220615-101847.png)
+
+
+You might think of a spreadsheet as a clever way to demonstrate this idea, but
+hardly appropriate for use within an enterprise. Don't be too quick. Before
 dismissing the use of a spreadsheet to hold enterprise critical information,
 please note:
 
@@ -315,4 +319,4 @@ account, and the sheet.
 
 ## TODO
 
-* update the provisioning so that it works with Apigee hybrid
+* update the provisioning so that it works with Apigee X and hybrid
