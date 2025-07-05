@@ -1,5 +1,9 @@
 # Externalizing API Authorization with Apigee
 
+> **This is an older example.  It still works, but it relies on Apigee Edge, and doesn't
+> take advantage of some cool things you can do in Apigee X. I've provided an updated
+> variant [here](https://github.com/DinoChiesa/Apigee-External-Authorization-2).
+
 The Apigee API Platform includes a configurable smart proxy service. People
 often think of this part of the platform as a gateway.
 
