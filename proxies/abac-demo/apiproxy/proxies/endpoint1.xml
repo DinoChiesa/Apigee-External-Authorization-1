@@ -54,8 +54,6 @@
   </PostFlow>
 
   <PostClientFlow name="PostFlow">
-    <Request>
-    </Request>
     <Response>
     </Response>
   </PostClientFlow>

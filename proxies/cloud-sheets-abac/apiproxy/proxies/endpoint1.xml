@@ -15,8 +15,6 @@
   </DefaultFaultRule>
 
   <PreFlow name="PreFlow">
-    <Request>
-    </Request>
     <Response>
       <Step>
         <Name>AM-Clean-Request-Headers-From-Response</Name>
@@ -25,18 +23,14 @@
   </PreFlow>
 
   <PostFlow name="PostFlow">
-    <Request>
-    </Request>
     <Response>
-
       <Step>
         <Name>AM-Inject-Proxy-Revision-Header</Name>
       </Step>
     </Response>
   </PostFlow>
+
   <PostClientFlow name="PostFlow">
-    <Request>
-    </Request>
     <Response>
     </Response>
   </PostClientFlow>
